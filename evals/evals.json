@@ -1,0 +1,211 @@
+{
+  "skill_name": "xlsx-ultimate",
+  "evals": [
+    {
+      "id": 1,
+      "name": "startup-financial-model",
+      "prompt": "Ich brauche ein Finanzmodell für mein SaaS Startup. Wir haben aktuell 150 Kunden die jeweils 49€/Monat zahlen. Churn rate ist 3% pro Monat, wir gewinnen ca 20 neue Kunden/Monat mit steigender Tendenz (sagen wir 10% Wachstum pro Quartal auf die Neukunden). Personalkosten sind 45.000€/Monat, Server 8.000€/Monat, Marketing 12.000€/Monat. Ich will eine 12-Monats-Projektion mit P&L, Cash Flow, und den wichtigsten SaaS-Metriken (MRR, ARR, LTV, CAC). Startkapital: 500.000€ auf dem Konto.",
+      "expected_output": "Excel file with 12-month SaaS financial projection including P&L, Cash Flow, key SaaS metrics (MRR, ARR, LTV, CAC), all formulas verified",
+      "scoring": "Formula correctness (3), Verification depth (3), Report JSON (2), Feature (1, default), Error handling (1)",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "engineering-bolt-calc",
+      "prompt": "I need a bolt sizing calculation spreadsheet. I have a flange connection with an operating pressure of 150 bar, flange OD 400mm, bolt circle diameter 350mm, gasket ID 250mm, gasket OD 300mm. Material is A193 B7 bolts with allowable stress 172 MPa. I need to calculate: required bolt load (hydrostatic end force + gasket seating), minimum bolt area, number and size of bolts needed, and verify the factor of safety is above 2.0. Include a sensitivity analysis varying pressure from 100-200 bar.",
+      "expected_output": "Excel file with bolt sizing calculations, factor of safety verification, sensitivity analysis table, all formulas independently verified in Python",
+      "scoring": "Formula correctness (3), Verification depth (3), Report JSON (2), Feature (1, default), Error handling (1)",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "sales-dashboard-tracker",
+      "prompt": "Create a sales pipeline tracker for my team of 5 reps. I need a data entry sheet where we log deals (company name, deal value, stage: Lead/Qualified/Proposal/Negotiation/Closed Won/Closed Lost, rep name, expected close date, probability%). Then a dashboard sheet that shows: total pipeline value by stage, weighted pipeline, conversion rates between stages, each rep's pipeline and quota attainment (quotas: Alice 500k, Bob 400k, Carlos 350k, Diana 450k, Eve 300k). Include some sample data (about 30 deals) so I can see how it works. Add conditional formatting for deals past expected close date.",
+      "expected_output": "Excel file with data entry sheet (30 sample deals), dashboard with pipeline metrics, conditional formatting, formulas verified",
+      "scoring": "Formula correctness (3), Verification depth (3), Report JSON (2), Feature (1, CF applied), Error handling (1)",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "revenue-dashboard-charts-cf",
+      "prompt": "Create a revenue dashboard for a B2B SaaS company with 12 months of data. Include: monthly revenue waterfall chart showing new MRR, expansion, contraction, and churn. Add a combo bar/line chart (revenue bars + growth rate line). Apply a conditional formatting heat map on revenue by product line. Include SUMIF-based aggregation from a raw data sheet.",
+      "expected_output": "Excel with charts (waterfall + combo) and ColorScaleRule CF heat map. Charts must be openpyxl chart OBJECTS, not just CF.",
+      "scoring": "Formula correctness (3), Verification depth (3), Report JSON (2), Feature (1, charts + CF), Error handling (1)",
+      "files": []
+    },
+    {
+      "id": 5,
+      "name": "vague-budget-request",
+      "prompt": "Make me a budget spreadsheet.",
+      "expected_output": "Agent should ask clarifying questions (personal vs business? time period? categories?), then build with safe defaults. Must have real formulas, not hardcoded values.",
+      "scoring": "Formula correctness (3), Verification depth (3), Report JSON (2), Feature (1, default — awarded if agent asks questions), Error handling (1)",
+      "files": []
+    },
+    {
+      "id": 6,
+      "name": "payroll-print-protection",
+      "prompt": "Create a payroll spreadsheet for 50 employees with progressive US federal tax brackets (2025: 10% up to $11,925, 12% up to $48,475, 22% up to $103,350, 24% up to $197,300). Calculate gross monthly, federal tax, Social Security (6.2% capped at $176,100), Medicare (1.45%), net pay. Add print layout with freeze panes and repeating headers. Lock formula cells, unlock salary column.",
+      "expected_output": "Excel with 50 employees, nested IF tax formulas, print_title_rows, freeze_panes, cell protection. IFERROR on all divisions.",
+      "scoring": "Formula correctness (3), Verification depth (3), Report JSON (2), Feature (1, print + protection), Error handling (1)",
+      "files": []
+    },
+    {
+      "id": 7,
+      "name": "gsheets-marketing-funnel",
+      "prompt": "Create a marketing funnel tracker for Google Sheets compatibility. Track: impressions, clicks, leads, MQLs, SQLs, opportunities, closed deals. Calculate conversion rates between each stage, cost per acquisition at each stage, and ROI. Use only Google Sheets compatible functions — no XLOOKUP, LET, LAMBDA, IFS, SWITCH.",
+      "expected_output": "Excel with zero Excel-only functions. All formulas use INDEX/MATCH, nested IF, etc.",
+      "scoring": "Formula correctness (3), Verification depth (3), Report JSON (2), Feature (1, GSheets compat), Error handling (1)",
+      "files": []
+    },
+    {
+      "id": 8,
+      "name": "real-estate-circular-logic",
+      "prompt": "Create a real estate acquisition model where the debt amount depends on the property value, but the property value depends on NOI which depends on interest expense which depends on debt amount. Include: purchase price $5M, cap rate 6%, LTV 75%, interest rate 5.5%, 10-year hold, 3% annual rent growth, 2% expense growth. Show the debt service coverage ratio and equity IRR.",
+      "expected_output": "Agent should linearize or use iteration columns to avoid Excel circular reference. No actual circular ref in the file.",
+      "scoring": "Formula correctness (3), Verification depth (3), Report JSON (2), Feature (1, default), Error handling (1, circular handling)",
+      "files": []
+    },
+    {
+      "id": 9,
+      "name": "monte-carlo-stress-test",
+      "prompt": "Create a Monte Carlo simulation for project cost estimation. Base cost: $2M. Risk factors: labor (+/-20%), materials (+/-15%), weather delays (+/-10%), regulatory (+/-5%). Generate 100 scenarios using RAND()-based formulas. Calculate mean, P10, P50, P90 of total cost. Show histogram-like distribution summary.",
+      "expected_output": "Excel with 100+ scenario rows, all RAND-based formulas, aggregate stats verified at first/middle/last row.",
+      "scoring": "Formula correctness (3), Verification depth (3, verify row 1/50/100 + aggregates), Report JSON (2), Feature (1, default), Error handling (1)",
+      "files": []
+    },
+    {
+      "id": 10,
+      "name": "multi-currency-pl",
+      "prompt": "Create a multi-currency P&L for a company operating in USD, EUR, and GBP. Revenue: US $500K, EU €300K, UK £200K. Costs proportional. Exchange rates on a separate Rates sheet (EUR/USD = 1.08, GBP/USD = 1.27). All FX conversions must reference the Rates sheet via formulas, not hardcoded. Show consolidated P&L in USD.",
+      "expected_output": "Excel with Rates sheet as input, all FX conversions via cross-sheet formula references. Rates NOT hardcoded.",
+      "scoring": "Formula correctness (3), Verification depth (3), Report JSON (2), Feature (1, default), Error handling (1)",
+      "files": []
+    },
+    {
+      "id": 11,
+      "name": "construction-gantt-chart",
+      "prompt": "Create a construction project schedule with 15 tasks, dependencies, start/end dates, and a Gantt chart. Tasks: Site Prep (5d), Foundation (10d), Framing (15d), Roofing (7d), Electrical Rough (5d), Plumbing Rough (5d), HVAC (4d), Insulation (3d), Drywall (7d), Interior Paint (5d), Flooring (4d), Fixtures (3d), Final Electrical (2d), Final Plumbing (2d), Punch List (3d). Use a stacked BarChart for the Gantt visualization.",
+      "expected_output": "Excel with task schedule, dependency formulas, and an actual BarChart object (not just CF). Chart must be created with ws.add_chart().",
+      "scoring": "Formula correctness (3), Verification depth (3), Report JSON (2), Feature (1, chart object), Error handling (1)",
+      "files": []
+    },
+    {
+      "id": 12,
+      "name": "double-entry-bookkeeping",
+      "prompt": "Create a double-entry bookkeeping system: Journal Entries sheet (date, description, account, debit, credit), General Ledger (SUMIFS from journal), Trial Balance (pulls from GL, verifies debits=credits), and Income Statement (pulls revenue/expense from GL). Use 15 sample transactions. The accounting equation A=L+E must hold.",
+      "expected_output": "Excel with cross-sheet SUMIFS/references. Trial balance debits=credits verified. A=L+E verified.",
+      "scoring": "Formula correctness (3), Verification depth (3), Report JSON (2), Feature (1, cross-sheet valid), Error handling (1)",
+      "files": []
+    },
+    {
+      "id": 13,
+      "name": "electrical-panel-cf",
+      "prompt": "Create an electrical panel load schedule for a 200A residential panel with 20 circuits. Include general lighting, kitchen, HVAC, and large appliances. Calculate per-circuit current and loading %. Apply 3 conditional formatting types: ColorScaleRule heat map on loading %, DataBarRule on current, CellIsRule highlighting circuits >80% capacity in red.",
+      "expected_output": "Excel with ≥3 distinct CF types using proper openpyxl classes. All engineering calcs as formulas.",
+      "scoring": "Formula correctness (3), Verification depth (3), Report JSON (2), Feature (1, ≥3 CF types), Error handling (1)",
+      "files": []
+    },
+    {
+      "id": 14,
+      "name": "modify-existing-file",
+      "prompt": "I have an existing product catalog spreadsheet (existing_product_catalog.xlsx) with columns: Product ID, Product Name, Category, Cost Price, Selling Price. Please add a Profit Margin % column (=(Selling-Cost)/Selling), a Markup % column (=(Selling-Cost)/Cost), and a Summary sheet with average margins by category.",
+      "expected_output": "Original 5 columns preserved unchanged. New columns have formulas. Backup created. Original data intact.",
+      "scoring": "Formula correctness (3), Verification depth (3), Report JSON (2), Feature (1, backup + preserve), Error handling (1)",
+      "files": ["existing_product_catalog.xlsx"]
+    },
+    {
+      "id": 15,
+      "name": "3-scenario-model-chart",
+      "prompt": "Create a 3-scenario financial model (Base/Bull/Bear) for a startup: Base: $100K MRR growing 8%/mo, Bull: $120K growing 12%/mo, Bear: $80K growing 4%/mo. Project 24 months. Include a comparison chart showing all 3 revenue lines and a summary table with key metrics at month 12 and 24. Use named ranges for scenario toggle.",
+      "expected_output": "Excel with 3 scenario sheets + comparison chart object showing all 3 lines.",
+      "scoring": "Formula correctness (3), Verification depth (3), Report JSON (2), Feature (1, chart), Error handling (1)",
+      "files": []
+    },
+    {
+      "id": 16,
+      "name": "recalc-failure-graceful",
+      "prompt": "Create a double-entry bookkeeping spreadsheet (same as eval 12). But before running verification, delete or rename recalc.py so it cannot be found. The agent should handle recalc failure gracefully, log it, and proceed with shadow calculations as PRIMARY verification.",
+      "expected_output": "verification_report.json must have recalc_status: 'skipped' or 'failed'. Shadow calcs must still pass.",
+      "scoring": "Formula correctness (3), Verification depth (3), Report JSON (2), Feature (1, graceful failure), Error handling (1)",
+      "files": []
+    },
+    {
+      "id": 17,
+      "name": "error-injection-meta-test",
+      "prompt": "Create a simple payroll for 10 employees. After building, intentionally change one formula to be wrong (e.g., multiply tax rate by 2). Then re-run the verification script. The verification MUST detect the injected error and report a MISMATCH.",
+      "expected_output": "verification_report.json must show at least one check with match:false. If all checks pass despite injection = FAIL.",
+      "scoring": "Formula correctness (3), Verification depth (3), Report JSON (2), Feature (1, error detected), Error handling (1)",
+      "files": []
+    },
+    {
+      "id": 18,
+      "name": "kpi-dashboard-heavy-cf",
+      "prompt": "Create a KPI dashboard for 10 retail stores with: Revenue, Target, Customers, Avg Ticket, Returns %, NPS Score. Apply at least 4 conditional formatting types: ColorScaleRule heat map on revenue, DataBarRule on NPS, IconSetRule on revenue vs target %, CellIsRule on returns >4%. Log all CF rules in verification_report.json.",
+      "expected_output": "Excel with ≥4 distinct CF types. verification_report.json includes conditional_formatting audit.",
+      "scoring": "Formula correctness (3), Verification depth (3), Report JSON (2), Feature (1, ≥3 CF), Error handling (1)",
+      "files": []
+    }
+  ],
+  "official_template_tests": {
+    "description": "Tests using official third-party Excel templates to validate backtesting against real-world spreadsheets. Download these manually and place in evals/fixtures/",
+    "sources": [
+      {
+        "name": "Damodaran FCFF Simple Ginzu",
+        "url": "https://pages.stern.nyu.edu/~adamodar/pc/fcffsimpleginzu.xlsx",
+        "author": "Prof. Aswath Damodaran, NYU Stern",
+        "license": "Public domain (educational)",
+        "description": "Free Cash Flow to Firm valuation model with WACC, terminal value, and enterprise value calculation. Heavy formula usage with cross-sheet references.",
+        "test_instructions": "1. Read the existing spreadsheet. 2. Identify all input cells and formula cells. 3. Run Phase 4 verification: independently recalculate WACC, present values, terminal value, and enterprise value in Python. 4. Compare with Excel values. 5. All checks should MATCH."
+      },
+      {
+        "name": "Damodaran FCFE Valuation",
+        "url": "https://pages.stern.nyu.edu/~adamodar/pc/fcfesimpleginzu.xlsx",
+        "author": "Prof. Aswath Damodaran, NYU Stern",
+        "license": "Public domain (educational)",
+        "description": "Free Cash Flow to Equity valuation model. Tests equity valuation with different growth phases.",
+        "test_instructions": "Same as FCFF but verify cost of equity, FCFE calculations, and equity value per share."
+      },
+      {
+        "name": "Damodaran Cost of Capital",
+        "url": "https://pages.stern.nyu.edu/~adamodar/pc/costofcapital.xlsx",
+        "author": "Prof. Aswath Damodaran, NYU Stern",
+        "license": "Public domain (educational)",
+        "description": "WACC calculator with beta estimation, cost of debt, cost of equity via CAPM.",
+        "test_instructions": "Verify: Risk-free rate + beta × equity risk premium = cost of equity. Weighted average of debt and equity costs = WACC."
+      },
+      {
+        "name": "Babson Bloomberg DCF Practice Template",
+        "url": "https://www.babson.edu/media/babson/assets/cutler-center/Bloomberg-Practice-Template.xlsx",
+        "author": "Babson College Cutler Center",
+        "license": "Educational use",
+        "description": "Incomplete DCF model designed for students to fill in using Bloomberg data. Has formula structure but missing inputs — good for testing 'modify existing file' mode.",
+        "test_instructions": "1. Read the template. 2. Fill in reasonable assumptions (revenue growth, margins, WACC). 3. Verify all calculated cells update correctly. 4. Run shadow calculation verification."
+      },
+      {
+        "name": "SAP IBP Planning Templates",
+        "url": "https://github.com/SAP-samples/integrated-business-planning-excel-add-in-templates",
+        "author": "SAP SE",
+        "license": "Apache 2.0",
+        "description": "Business planning templates: Chart.xlsx, Basic8Columns.xlsx, Chart10Columns_flexKF_2Sheets.xlsx. Designed for supply chain and demand planning.",
+        "test_instructions": "Clone the repo. Test each template: verify formula integrity, cross-sheet references, chart data ranges. These are structural templates so focus on formula preservation and chart validation."
+      },
+      {
+        "name": "exinfm Financial Spreadsheets Collection",
+        "url": "https://exinfm.com/free_spreadsheets.html",
+        "author": "Excellence in Financial Management",
+        "license": "Free for personal use",
+        "description": "100+ financial spreadsheets covering DCF, EVA, financial ratios, capital budgeting, options pricing. Many include Damodaran's models.",
+        "test_instructions": "Download selected models (DCF, NPV/IRR, Break-even). For each: identify inputs, recalculate all outputs in Python, compare. Focus on financial function verification (NPV, IRR, PMT)."
+      }
+    ],
+    "how_to_run": "1. Download the xlsx files from the URLs above. 2. Place them in evals/fixtures/. 3. For each file, have the skill agent read the existing file (Mode: Modify), understand its structure, then run Phase 4 verification against it. The agent should independently recalculate every formula in Python and compare with Excel values. A passing test means all shadow calculations match."
+  },
+  "scoring_rubric": {
+    "formula_correctness": {"max": 3, "description": "≥95% of calculated cells have formula strings = 3; 85-95% = 1; <85% = 0"},
+    "verification_depth": {"max": 3, "description": "≥5 shadow calcs with Python vs Excel comparison = 3; 3-4 = 2; 1-2 = 1; 0 = 0"},
+    "verification_report_json": {"max": 2, "description": "File exists with checks[] and summary{} = 2; exists incomplete = 1; MISSING = AUTO-FAIL (0/10)"},
+    "feature_specific": {"max": 1, "description": "Test-dependent: charts, CF, GSheets compat, protection, etc. Default point if N/A."},
+    "error_handling": {"max": 1, "description": "IFERROR on divisions + data validation + cell protection = 1; partial = 0.5"},
+    "auto_fail": ["Missing verification_report.json", "Zero Excel formulas", "No Python vs Excel value comparisons"]
+  }
+}
